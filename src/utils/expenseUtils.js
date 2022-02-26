@@ -1,19 +1,18 @@
 import config from "../config";
 
-export const deleteExpense = (index, setDelFlag, delFlag) => {
+export const deleteExpense = (index, setDelFlag) => {
   fetch(config.backendUrl + "/delete/" + index, {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      token: sessionStorage.getItem("token"),
     },
   })
     .catch(() => {
-      setDelFlag(true ? false : true);
-      console.log("deletd:" + delFlag);
+      setDelFlag((prev) => !prev); //true ? false : true);
     })
     .finally(() => {
-      setDelFlag(delFlag ? false : true);
-      console.log("deletd:" + delFlag);
+      setDelFlag((prev) => !prev); //delFlag ? false : true);
     });
   // console.log("deletd" + index);
 };
@@ -36,7 +35,7 @@ export const createPaginationArray = (
         key={i}
         onClick={() => setPageNumber(i)}
         style={
-          i == pageNumber
+          i === pageNumber
             ? { backgroundColor: "#e2b842", color: "black", fontWeight: "bold" }
             : { fontWeight: "bold", color: "gray", backgroundColor: "#fae09a" }
         }

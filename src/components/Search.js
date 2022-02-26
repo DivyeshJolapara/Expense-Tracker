@@ -2,13 +2,13 @@ import React from "react";
 
 const Search = ({ expenses, setExpenses }) => {
   //   let expCopy = expenses;
-  console.log("SEARCH");
-  console.log(expenses);
+  //   console.log("SEARCH");
+  //   console.log(expenses);
   const handleSearch = (e) => {
     let filtered = expenses.filter(
       (expense) => expense.name.toLowerCase().indexOf(e.target.value) !== -1
     );
-    console.log(filtered);
+    // console.log(filtered);
     setExpenses(filtered);
   };
   return (

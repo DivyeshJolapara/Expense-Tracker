@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { shakeIt } from "../utils/expenseUtils";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passreq, setPassReq] = useState(false);
@@ -41,7 +41,10 @@ const Login = () => {
     fetch(config.backendUrl + "/auth", {
       method: "POST",
 
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({
         username,
         password,
@@ -108,7 +111,7 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 const ReqError = () => {
   return <div style={{ color: "red" }}>Required</div>;
 };

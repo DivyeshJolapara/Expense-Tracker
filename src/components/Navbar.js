@@ -5,8 +5,10 @@ import config from "../config";
 const Navbar = () => {
   const nav = useNavigate();
   const handleLogout = () => {
-    fetch(config.backendUrl + "/logout", {
-      headers: { token: sessionStorage.getItem("token") },
+    fetch(config.backendUrl + "/logout2", {
+      headers: {
+        token: sessionStorage.getItem("token"),
+      },
       method: "POST",
     })
       .then((res) => res.text())
@@ -16,18 +18,13 @@ const Navbar = () => {
       });
   };
   return (
-    <div
-      style={{
-        color: "white",
-        zIndex: 10,
-        backgroundColor: "black",
-        width: "100%",
-      }}
-    >
+    <div className="navbar">
       <h1>Expense Tracker</h1>
-      <button onClick={handleLogout} className="btn btn-danger logout">
-        {sessionStorage.getItem("token") ? "Logout" : ""}
-      </button>
+      {sessionStorage.getItem("token") && (
+        <button onClick={handleLogout} className="btn btn-danger logout">
+          {sessionStorage.getItem("token") ? "Logout" : ""}
+        </button>
+      )}
     </div>
   );
 };

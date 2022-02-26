@@ -8,7 +8,9 @@ const AddExpense = ({ setAddClicked }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(config.backendUrl + "/categories")
+    fetch(config.backendUrl + "/categories", {
+      headers: { token: sessionStorage.getItem("token") },
+    })
       .then((res) => res.json())
       .then((res) => {
         console.log(JSON.stringify(res));
@@ -30,6 +32,7 @@ const AddExpense = ({ setAddClicked }) => {
   };
 
   const submitExpense = (e) => {
+    e.preventDefault();
     if (name.trim() === "" || amount.trim() === "") {
       document.getElementById("addForm").classList.add("shake");
       e.preventDefault();
@@ -57,13 +60,16 @@ const AddExpense = ({ setAddClicked }) => {
         console.log(res);
         setName("");
         setAmount(0);
-        // setAddClicked(false);
+        setAddClicked(false);
+        document.querySelector(".modal-bg").classList.remove("modal-open");
       });
     }
   };
-  const handleCancel = () => {
-    // event.preventDefault;
-    setAddClicked(false);
+  const handleCancel = (e) => {
+    e.preventDefault();
+    // setAddClicked(false);
+    document.querySelector(".modal-bg").classList.remove("modal-open");
+
     // return;
   };
   const selectChange = (e) => {
@@ -98,7 +104,7 @@ const AddExpense = ({ setAddClicked }) => {
           <label>
             <b>Category</b>
           </label>
-          <select onChange={selectChange}>
+          <select onChange={selectChange} className="form-control">
             {categories.map((c) => {
               return <option value={c.id}>{c.category}</option>;
             })}

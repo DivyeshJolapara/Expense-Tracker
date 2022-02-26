@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { useNavigate } from "react-router";
 import config from "../config";
 import { shakeIt } from "../utils/expenseUtils";
@@ -11,10 +11,20 @@ let model = {
   dob: "",
 };
 
+let reducer = (state, action) => {
+  switch (action.type) {
+    case "FIRST_NAME":
+      return { ...state, firstName: action.payload.val };
+  }
+};
+
 const UserRegister = () => {
   const [user, setUser] = useState(model);
   const [resp, setResp] = useState();
   const [passMatch, setPassMatch] = useState(true);
+
+  const [state, dispatch] = useReducer(reducer, model);
+
   let nav = useNavigate();
   let status;
   const formSubmit = () => {
@@ -59,6 +69,12 @@ const UserRegister = () => {
           <label for="">First Name</label>
           <input
             type="text"
+            // onChange={(e) =>
+            //   dispatch({
+            //     type: "FIRST_NAME",
+            //     payload: { val: e.target.value },
+            //   })
+            // }
             onChange={(e) => {
               setUser({ ...user, firstName: e.target.value });
               //   console.log(user);

@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Error from "./components/Error";
 import BaseModal from "./components/BaseModal";
 import UserRegister from "./components/UserRegister";
+import ProfileDetails from "./components/ProfileDetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="error" element={<Error />} />
           <Route path="edit" element={<BaseModal />} />
           <Route path="register" element={<UserRegister />} />
+          <Route path="profile" element={<ProfileDetails />} />
         </Routes>
       </Router>
     </>

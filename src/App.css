@@ -174,6 +174,71 @@ form {
   padding: 10px;
 }
 
-th {
+th.sort-head {
   cursor: pointer;
+  text-decoration: underline;
+}
+
+/* .sort-icon {
+  fill: white;
+} */
+
+.logout {
+  display: flex;
+  align-items: right;
+}
+
+.navbar {
+  color: white;
+  z-index: 10;
+  background-color: black;
+  width: "100%";
+  height: 100px;
+}
+
+.sidebar-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 250;
+  margin-left: 0;
+  background-color: white;
+  height: 100vh;
+  width: 20%;
+  /* display: inline-block; */
+  /* overflow-x: hidden; */
+  /* flex: 1; */
+  /* column-span: 30%; */
+  /* background-size: 20%; */
+}
+
+.expense-list-body {
+  /* display: flex; */
+  /* overflow-x: hidden; */
+  /* display: inline-block; */
+  /* flex: 5; */
+  /* overflow: scroll; */
+  /* width: 900px; */
+  /* height: 100vh; */
+  /* width: 1200px; */
+  overflow: hidden;
+}
+
+.page {
+  display: inline-block;
+}
+
+.sidebar-btn {
+  /* height: 20px; */
+  /* position: fixed; */
+  vertical-align: auto;
+}
+
+/* #editModal.modal-body.form {
+  background-color: black;
+} */
+
+#editForm {
+  background-color: rgba(1, 1, 1, 0.8);
+  padding: 10px;
 }
